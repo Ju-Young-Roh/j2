@@ -1,0 +1,180 @@
+
+자바II
+
+  **내가 뭘하고있는건지 왜하는건지 생각**
+  **http://nbviewer.ipython.org/github/smu405/j2/blob/master/1_hello_java.ipynb
+
+ANT ->
+gradle
+
+//폴더구성이 다름
+         j2(root디렉토리)
+     x컴파일  - src(소스)코드만있음 / pack이름  ->  src/com/j2
+              - classes
+              - lib(라이브러리)   ->   lib/
+
+
+javac(컴파일)
+컴파일 했을시 C:\programfiles\
+			     ㄴjdk생성
+
+** http://www.drjava.org/ jar파일 다운로드
+
+닥터자바의 interactions 커서 입력창 명령어 입력시 결과값 출력
+(컴파일 하지않아도 출력값 확인 가능)
+
+
+javac -sourcepath src src\helloworld.java
+(패키지 생성 전까지의 패스) 컴파일을 src에
+
+java -classpath classes HelloWorld(classpath를 잡아주어야 실행가능)
+
+git cmd
+
+github
+-------remote(remote repo)
+git push
+-------head(local repo)
+git commit
+-------index(형상관리되는공간) //track(추적)된다
+git add
+-------working dir(작업공간) //.git가 있는디렉토리(숨겨진디렉토리)
+github.com>>>>>>>
+
+집에서 할땐   dir만들고 git clone https://~~주소복사 ㄱㄱ //아무것도 없을때 처음내려받는경우
+git pull //작업해둔것이 있을때 수정본을 내려받는경우
+
+ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+
+VM ID: ubuntu
+VM PW:ubuntu
+
+Command Line Interface  <->  Graphical User Interface
+ctrl+alt+Fn, alt+Fn
+
+VM에서 java -version (자바설치)
+sudo apt-get install openjdk-7-jdk
+
+git 설치
+sudo apt-get install git
+
+ipython/ 강의자료 pip    //apt랑비슷한개념 인데 apt는 리눅스전체
+sudo apt-get install python-pip       //sudo => win의 admin
+
+sudo apt-get update
+
+sudo pip install ipython-notebook
+sudo pip install ipython[all]
+
+sudo pip install tornado
+sudo pip install 
+
+------
+
+git bash - 리눅스환경
+git CMD  - 윈도우환경
+
+ls       => path 보여줌
+ls -la   => 숨김파일까지 보여주는 cmd
+
+
+----------
+git log   >>자기디렉토리인지 확인
+----------
+
+
+아나콘다>> ipython notebook
+
+
+************************************************************
+디자인패턴
+************************************************************
+creational : 인스턴스를 생성하는 패턴  ->   new() 와 관련된 문제를 해결 //factory, builder,singleton, prototype 패턴
+
+
+OCP(Open Closed Principle) : 기능확장시 수정이 없도록 (최소화) // 확장은쉽게 수정은최소화
+1.변동부분을 분리한다.
+
+
+http://plantuml.com/plantuml/form
+
+git pull origin master //내려받기
+git remote -v
+
+명령프롬프트에서 닥터자바실행
+
+javac -sourcepath src -d classes src/com/j2/decorator/*.java      컴파일
+java -classpath classes com/j2/decorator/메인                     실행
+
+javac -d classes -sourcepath src/com/j2/factory/*.java            컴파일
+java -cp classes com.j2.factory.PizzaTestDrive		  	  실행 (명령프롬프트)
+====================================
+옵저버패턴
+====================================
+
+abstract(Observer)            -class        물려줄데이터가 있는경우
+-----------------             -interface    물려줄데이터가 없는경우
+계층분리 ^업캐스팅 v다운캐스팅
+concrete
+-----------------
+
+Subject (정보제공자)
+=Observable, Publisher
+상태가 변경이 되면 알림 기능 (notify)<-함수
+알림 대상이 되는 Observer를 사전에 등록 (register)<-함수
+
+
+Observers
+Subscriber
+Subject의 상태가 변경이 되면 그 내용을 받아서 반영함 (update)<-함수  (observable데이터를긁어옴)
+
+
+mv ~/Downloads/plantuml_export.txt . 로 옮기고
+java -jar plantuml.jar plantuml_export.txt 로 실행
+=======
+ git add src/com/j2/observer/*.java
+ git commit -m 'blabla'
+ git push
+올리기
+=====
+git log
+git status
+git pull
+내려받기
+=====
+
+
+
+
+
+abstract class Beverage{
+
+    -description="Unknown Beverage":String
+    +abstract cost():double
+    +getDescription():String
+
+}
+
+class DarkRoast{
+    +DarkRoast()
+    +cost():double
+}
+class HouseBlend{
+    +HouseBlend()
+    +cost():double
+}
+
+abstract class CondimentDecorator{
+    +abstract getDescription():String
+}
+
+class Mocha{
+    +getDescription():String
+    +cost():double
+}
+
+Beverage<|-- DarkRoast
+Beverage<|-- HouseBlend
+Beverage<|-- CondimentDecorator
+CondimentDecorator<|-- Mocha
+Mocha --> Beverage
